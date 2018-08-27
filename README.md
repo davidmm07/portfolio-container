@@ -1,24 +1,34 @@
-# README
+# portfolio-container
+A ruby on rails application within containers (db,web)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requirements
 
-Things you may want to cover:
+* docker
+* docker-compose
 
-* Ruby version
+## For init container
 
-* System dependencies
+```
+docker-compose up -d && docker-compose run web rake db:create
+```
 
-* Configuration
+## Add permisions
+```
+sudo chown -R $USER:$USER .
+```
 
-* Database creation
 
-* Database initialization
+## If you want execute commands of Ruby on Rails
+```
+docker exec -it portafoliocontainer_web_1 /bin/bash
+```
+### If you add or change any alteration in the database model
 
-* How to run the test suite
+```
+docker-compose run web rake db:migrate
+```
+### If you add example data
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+docker-compose run web rake db:seed
+```
